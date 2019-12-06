@@ -6,25 +6,8 @@
     <main-header :title="title"></main-header>
     <div class="menu">
       <div>
-        <select v-model="search.zone">
-          <option disabled value>所在分区</option>
-          <option v-for="item in zoneList" :value="item.value">{{item.label}}</option>
-        </select>
-        <span class="iconfont">&#xe822;</span>
-      </div>
-      <div>
-        <select v-model="search.site">
-          <option disabled value>站点类型</option>
-          <option v-for="item in site" :value="item.value">{{item.label}}</option>
-        </select>
-        <span class="iconfont">&#xe822;</span>
-      </div>
-      <div>
-        <select v-model="search.dataType">
-          <option disabled value>数据类型</option>
-          <option v-for="item in dataType" :value="item.value">{{item.label}}</option>
-        </select>
-        <span class="iconfont">&#xe822;</span>
+        <input type="text" v-model="cameraName" placeholder="请输入小区名称" />
+        <mt-button @click="search" type="primary" size="small">搜索</mt-button>
       </div>
     </div>
     <div
@@ -121,9 +104,17 @@ export default {
     this.getList();
   },
   methods: {
+    search() {
+      this.pageNo = 1;
+      this.list = [];
+      this.getList();
+    },
     async getList() {
       const qry = new this.Query();
       qry.buildPageClause(this.pageNo, this.pageSize);
+      if (this.cameraName) {
+        qry.buildWhereClause("cameraName", this.cameraName, "LK");
+      }
       const param = qry.getParam();
 
       const res = await this.api.getSysPumpCameraPage(param);
@@ -179,16 +170,17 @@ export default {
     > div {
       flex: 1;
       margin: 0 0.3rem;
-      position: relative;
-      select {
-        width: 100%;
-        border: 0;
+      display: flex;
+      display: -webkit-flex;
+      flex-flow: row nowrap;
+      input {
+        padding-left: 0.4rem;
+        flex: 1;
+        border: 1px solid #ccc;
       }
-      > span {
-        position: absolute;
-        z-index: 9;
-        top: 0;
-        right: 0.02rem;
+      .mint-button {
+        flex: 0 0 auto;
+        background-color: @color;
       }
     }
   }
