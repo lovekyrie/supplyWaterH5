@@ -55,8 +55,8 @@ export default {
       }
       this.$set(this.list, index, this.list[index]);
     },
-    videoPlay() {
-      this.$emit("videoPlay", "");
+    videoPlay(uuid) {
+      this.$emit("videoPlay", uuid);
     }
   }
 };

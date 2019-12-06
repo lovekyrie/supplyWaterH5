@@ -28,6 +28,10 @@
 
 <script>
 import { videoPlayer } from "vue-video-player";
+// videojs
+import videojs from "video.js";
+window.videojs = videojs;
+
 require("videojs-contrib-hls/dist/videojs-contrib-hls.js");
 export default {
   props: {
@@ -38,6 +42,8 @@ export default {
   },
   data() {
     return {
+      videoSrcPrex: "http://115.231.212.30:6713/mag/hls/",
+      videoSrcSufx: "/1/live.m3u8",
       playerOptions: {
         // videojs and plugin options
         height: "360",
@@ -45,8 +51,7 @@ export default {
           {
             withCredentials: false,
             type: "application/x-mpegURL",
-            src:
-              "http://115.231.212.30:6713/mag/hls/a28f066f28db41beb773f750ac66abb0/1/live.m3u8"
+            src: ""
           }
         ],
         controlBar: {
@@ -62,7 +67,8 @@ export default {
   components: { videoPlayer },
   mounted() {
     //需要替换hls跟1之前的那一串
-    this.playerOptions.sources[0].src = this.url;
+    this.playerOptions.sources[0].src =
+      this.videoSrcPrex + this.url + this.videoSrcSufx;
   },
   methods: {
     playerReadied(player) {

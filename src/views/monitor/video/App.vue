@@ -33,7 +33,7 @@
       infinite-scroll-disabled="loading"
       infinite-scroll-distance="10"
     >
-      <list :list="list" @videoPlay="videoPlay" :canPlayer="canPlay" ></list>
+      <list :list="list" @videoPlay="videoPlay" :canPlayer="canPlay"></list>
       <p v-if="!total" class="noData">数据全部加载完</p>
     </div>
   </div>
@@ -47,7 +47,7 @@ export default {
     return {
       videoUrl: "",
       loading: false,
-      canPlay:true,
+      canPlay: true,
       pageNo: 1,
       pageSize: 10,
       total: 0,
@@ -129,15 +129,17 @@ export default {
       const res = await this.api.getSysPumpCameraPage(param);
       const list = res.data.list;
       this.total = res.page.total;
-      
+
       this.list.push(...list);
       const len = this.list.length;
-      this.title = `泵房监控（${len}）`;
+      this.title = `视频监控（${len}）`;
       this.loading = false;
     },
     loadMore() {
       console.log("loadMore");
-      if (this.list.length < 20) {
+      if (this.list.length < this.total) {
+        this.pageNo++;
+        this.loading = true;
         this.getList();
       }
     },
