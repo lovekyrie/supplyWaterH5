@@ -59,8 +59,8 @@ export default {
 .login {
   width: 100%;
   height: 100%;
-  background: url("./img/bg.png") no-repeat center center;
-  background-size: contain;
+  background: url("./img/bg.png") no-repeat;
+  background-size: cover;
   position: relative;
   .login-info {
     position: absolute;

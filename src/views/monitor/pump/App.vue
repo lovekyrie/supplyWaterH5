@@ -2,6 +2,12 @@
 <template>
   <div id="container">
     <main-header :title="title"></main-header>
+    <div class="menu">
+      <div>
+        <input type="text" v-model="pumpNm" placeholder="请输入小区名称" />
+        <mt-button @click="search" type="primary" size="small">搜索</mt-button>
+      </div>
+    </div>
     <div
       class="main"
       v-infinite-scroll="loadMore"
@@ -27,6 +33,7 @@ export default {
       total: 0,
       title: "水厂数据（4）",
       list: [],
+      pumpNm: "",
       DATA_SHOW_LIST: [
         {
           key: "所在区域",
@@ -205,9 +212,17 @@ export default {
     });
   },
   methods: {
+    search() {
+      this.pageNo = 1;
+      this.list = [];
+      this.getList();
+    },
     async getList() {
       const qry = new this.Query();
       qry.buildPageClause(this.pageNo, this.pageSize);
+      if (this.pumpNm) {
+        qry.buildWhereClause("pumpNm", this.pumpNm, "LK");
+      }
       const param = qry.getParam();
 
       const res = await this.api.getSysMonitorLatestPage(param);

@@ -9,6 +9,16 @@ class api {
       });
     });
   }
+
+  //退出
+  getSysLoginOut() {
+    return new Promise((resolve, reject) => {
+      untilApi.get("/general/access/logout").then(res => {
+        resolve(res);
+      });
+    });
+  }
+
   //泵房列表
   getSysMonitorLatestPage(data) {
     return new Promise((resolve, reject) => {

@@ -228,14 +228,14 @@ class until {
         success(data) {
           if (data.code == "1000") {
             $dialog.toast({
-              mes: data.message,
+              mes: data.msg,
               timeout: 1500,
               icon: "error",
               callback: () => {}
             });
           } else if (data.code === 401) {
             $dialog.toast({
-              mes: data.message,
+              mes: data.msg,
               timeout: 1500,
               icon: "error",
               callback: () => {

@@ -29,16 +29,13 @@ export default {
   data() {
     return {
       videoUrl: "",
+      cameraName:"",
       loading: false,
       canPlay: true,
       pageNo: 1,
       pageSize: 10,
       total: 0,
-      search: {
-        zone: "",
-        site: "",
-        dataType: ""
-      },
+    
       videoShow: false,
       title: "水厂数据（4）",
       zoneList: [
@@ -91,13 +88,13 @@ export default {
     videoShow
   },
   watch: {
-    search: {
-      deep: true,
-      handler: function(e) {
-        this.loading = false;
-        console.log(e);
-      }
-    }
+    // search: {
+    //   deep: true,
+    //   handler: function(e) {
+    //     this.loading = false;
+    //     console.log(e);
+    //   }
+    // }
   },
   created() {},
   mounted() {
@@ -157,33 +154,7 @@ export default {
   display: flex;
   display: -webkit-flex;
   flex-direction: column;
-  .menu {
-    width: 100%;
-    background: #ffffff;
-    display: flex;
-    display: -webkit-flex;
-    align-items: center;
-    height: 0.8rem;
-    margin-bottom: 0.2rem;
-    padding: 0 0.5rem;
-    box-sizing: border-box;
-    > div {
-      flex: 1;
-      margin: 0 0.3rem;
-      display: flex;
-      display: -webkit-flex;
-      flex-flow: row nowrap;
-      input {
-        padding-left: 0.4rem;
-        flex: 1;
-        border: 1px solid #ccc;
-      }
-      .mint-button {
-        flex: 0 0 auto;
-        background-color: @color;
-      }
-    }
-  }
+ 
 }
 .main {
   flex: 1;

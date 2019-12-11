@@ -5,7 +5,7 @@
         <p @click="videoPlay(item.cameraUuid)" v-if="canPlayer">{{item.cameraName}}</p>
         <p v-else>{{item.pumpNm+item.nm}}</p>
         <span>{{item.crtTm}}</span>
-        <span class="iconfont" v-if="item.check" @click="toCheck(index)">&#xe62b;</span>
+        <span class="iconfont" v-if="canPlayer"></span>
         <span class="iconfont" v-else @click="toCheck(index)">&#xe822;</span>
       </div>
       <!-- 默认展示的明细数据 -->
