@@ -121,6 +121,8 @@ export default {
         flex-flow: row nowrap;
         align-items: center;
         div {
+          flex: 1;
+          font-size: .24rem;
           p {
             &:not(:nth-of-type(1)) {
               margin-top: 0.1rem;
@@ -163,8 +165,9 @@ export default {
     }
     .operate {
       width: 60%;
-      margin: 50% auto 0;
+      margin: 20% auto 0;
       background-color: #f2f3f7;
+      transform: translateY(-50%);
       button {
         width: 100%;
         height: 1rem;

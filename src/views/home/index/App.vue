@@ -284,8 +284,8 @@ export default {
   components: {},
   created() {},
   mounted() {
-    const userInfoStr = this.until.loGet("userInfo");
-    if (!userInfoStr) {
+    const token = this.until.getCookie("yui3-token");
+    if (!token) {
       this.until.href("./login.html");
     }
   },
