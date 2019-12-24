@@ -231,6 +231,9 @@ export default {
       list.forEach(item => {
         this.DATA_SHOW_LIST.forEach(data => {
           data.value = item[data.nm];
+          if (data.nm === "status") {
+            data.value = item[data.nm] === 0 ? "离线" : "在线";
+          }
         });
         item.list = JSON.parse(JSON.stringify(this.DATA_SHOW_LIST));
         item.dataList = item.list.slice(0, 4);

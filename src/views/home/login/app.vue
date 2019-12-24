@@ -44,6 +44,7 @@ export default {
           this.$hero.msg.show({
             text: "登录成功"
           });
+          this.until.loSave("userInfo", JSON.stringify(res.data.userInfo));
           setTimeout(() => {
             this.until.href("./index.html");
           }, 1500);

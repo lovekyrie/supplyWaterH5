@@ -226,14 +226,7 @@ class until {
         //       'token': this.getCookie('token')
         //   },
         success(data) {
-          if (data.code == "1000") {
-            $dialog.toast({
-              mes: data.msg,
-              timeout: 1500,
-              icon: "error",
-              callback: () => {}
-            });
-          } else if (data.code === 401) {
+          if (data.code === 401) {
             $dialog.toast({
               mes: data.msg,
               timeout: 1500,
@@ -242,8 +235,16 @@ class until {
                 window.location.href = "../home/login.html";
               }
             });
+          } else if (data.code !== 200) {
+            $dialog.toast({
+              mes: data.msg,
+              timeout: 1500,
+              icon: "error",
+              callback: () => {}
+            });
+          } else {
+            resolve(data);
           }
-          resolve(data);
         },
         error(data) {
           reject(data);
